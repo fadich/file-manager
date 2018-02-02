@@ -27,7 +27,7 @@ print HINT
 print '-' * 32 + '\n'
 
 while 1:
-    input = raw_input('Path: ').split('|')
+    input = raw_input('{}: '.format(os.getcwd())).split('|')
     input = [i.strip() for i in input]
     path = input[0] or '.'
     input = [i.lower() for i in input]
@@ -43,8 +43,9 @@ while 1:
     else:
         if input.count('e'):
             try:
-                subprocess.call([path])
-            except WindowsError as err:
+                #subprocess.call([path])
+                os.system(path)
+            except OSError as err:
                 print 'Command "%s" executed with error: %s' % (path, err)
             continue
         print '"%s" is not directory' % path
