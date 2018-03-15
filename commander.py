@@ -1,6 +1,7 @@
 import os
 import re
 import subprocess
+import console_behaviour
 from fs import Dir
 
 
@@ -27,7 +28,10 @@ print HINT
 print '-' * 32 + '\n'
 
 while 1:
-    input = raw_input('{}: '.format(os.getcwd())).split('|')
+    try:
+        input = raw_input('{}: '.format(os.getcwd())).split('|')
+    except KeyboardInterrupt:
+        exit('\nBye...')
     input = [i.strip() for i in input]
     path = input[0] or '.'
     input = [i.lower() for i in input]
